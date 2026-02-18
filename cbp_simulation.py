@@ -336,41 +336,37 @@ if __name__ == '__main__':
     fig1.savefig('fig_convergence.png', dpi=200, bbox_inches='tight')
     print("\nSaved fig_convergence.png")
 
-    # Figure 2: Power ratio vs RMSE for largest N
+    # Figure 2: Power ratio vs RMSE for largest N (excluding artifact region)
     fig2, ax2 = plt.subplots(figsize=(10, 7))
     colors_alpha = {1.1: '#d62728', 1.2: '#e377c2', 1.3: '#ff7f0e',
                     1.5: '#2ca02c', 1.7: '#1f77b4', 1.9: '#9467bd'}
 
+    # Only plot ratios for RMSE > 0.003 (avoid perfect reconstruction artifact)
+    min_rmse_plot = 0.003
+
     for alpha in alphas:
         r = all_results[(N_best, dt_best)][alpha]['result']
-        # Compute ratio at matching RMSE via interpolation
-        # Use log-log interpolation for smoother curve
-        log_disc_rmse = np.log10(r['disc_rmse'])
-        log_disc_power = np.log10(r['disc_power'])
-        log_cont_rmse = np.log10(r['cont_rmse'])
-        log_cont_power = np.log10(r['cont_power_damp'])
-
-        # Interpolate continuous power at discrete RMSE points
-        log_cont_power_interp = np.interp(log_disc_rmse, log_cont_rmse, log_cont_power,
-                                           left=np.nan, right=np.nan)
-        mask = np.isfinite(log_cont_power_interp) & (r['disc_rmse'] > 0)
-        if np.sum(mask) > 2:
-            ratio = 10**(log_disc_power[mask] - log_cont_power_interp[mask])
-            ax2.semilogy(log_disc_rmse[mask], ratio, 'o-', color=colors_alpha[alpha],
+        # Find indices where both discrete and continuous have valid RMSE > threshold
+        valid_mask = (r['disc_rmse'] > min_rmse_plot) & (r['cont_rmse'] > min_rmse_plot)
+        if np.sum(valid_mask) > 2:
+            ratios = r['disc_power'][valid_mask] / r['cont_power_damp'][valid_mask]
+            log_rmses = np.log10(r['disc_rmse'][valid_mask])
+            ax2.semilogy(log_rmses, ratios, 'o-', color=colors_alpha[alpha],
                          markersize=4, linewidth=1.5, label=f'α={alpha}')
 
     ax2.set_xlabel('log₁₀(RMSE)', fontsize=13)
     ax2.set_ylabel('Power Ratio: Discrete / Continuous', fontsize=13)
-    ax2.set_title(f'Metabolic Penalty Ratio vs Fidelity (N={N_best}, averaged over {n_seeds} seeds)',
+    ax2.set_title(f'Metabolic Penalty Ratio vs Fidelity (N={N_best}, ε > {min_rmse_plot})',
                   fontsize=14, fontweight='bold')
     ax2.legend(fontsize=11)
     ax2.grid(True, alpha=0.3)
     ax2.axhline(y=7, color='gray', linestyle='--', alpha=0.7)
     ax2.annotate('7× (paper claim for α=1.5)', xy=(-1.5, 7), fontsize=10, color='gray')
     ax2.axhline(y=1, color='black', linestyle='-', alpha=0.3)
+    ax2.set_xlim([-2.5, -0.5])  # Focus on biologically relevant range
     fig2.tight_layout()
-    fig2.savefig('fig_ratio.png', dpi=200, bbox_inches='tight')
-    print("Saved fig_ratio.png")
+    fig2.savefig('fig_ratio_fixed.png', dpi=200, bbox_inches='tight')
+    print("Saved fig_ratio_fixed.png")
 
     # ====================================================================
     # Save results to JSON (generic path)
