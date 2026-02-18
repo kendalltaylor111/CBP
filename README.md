@@ -1,1 +1,1 @@
-cbp_extended.py - Simulation code for CBP framework
+The Python script cbp_extended.py generates the simulation data reported in Section 6. It tests scaling convergence across N=64K, 256K, and 1M samples. Run with Python 3.8+ and dependencies: numpy, scipy, matplotlib.
