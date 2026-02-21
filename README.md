@@ -1,1 +1,1 @@
-The Python script cbp_simulation.py generates the simulation data reported in Section 6. It tests scaling convergence across N=64K, 256K, and 1M samples. Run with Python 3.8+ and dependencies: numpy, scipy, matplotlib.
+The Python script cbp_simulation.py generates the simulation data reported in Section 6 of the Constraint-Based Physicalism (CBP) paper. It tests scaling convergence across N=64K, 256K, and 1M samples. Run with Python 3.8+ and dependencies: numpy, scipy, matplotlib.
