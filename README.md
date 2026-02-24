@@ -1,5 +1,7 @@
 Constraint-Based Physicalism
 
+------------------
+
 How to Read This Paper (CBP v12.pdf):
 
 This paper does not attempt to derive subjective experience from neural activity, solve the hard problem in the reductive sense, or identify a neural correlate of consciousness. It does something different: it asks what kind of physical fact consciousness would have to be if it is a physical fact at all, and finds that the answer dissolves the problem that motivated the question.
@@ -11,5 +13,7 @@ The philosophical move is then to notice what this phase is. Its parameters syst
 This identity predicts the hard problem rather than being threatened by it. If experience is the continuous informational geometry of the phase, and third-person description is lossy with respect to that geometry, then third-person accounts will necessarily seem to leave experience out. The explanatory gap is a compression artifact—a gap in description, not in ontology. The zombie thought experiment fails not because zombies are physically impossible, but because the specification is incoherent: it demands the outputs of the parallax phase while subtracting the phase itself.
 
 The paper develops this argument with formal precision, including a resolution of how consciousness can involve a sharp existence threshold (a phase transition) while phenomenology is graded (varying elaboration above threshold), a response to Kripke's anti-physicalist argument via the compression artifact, and a demonstration that the resulting ontology is more parsimonious than dualism, panpsychism, emergentism, functionalism, or eliminativism. Falsifiable predictions for neurophysiology and AI architecture are provided.
+
+------------------
 
 *The Python script cbp_simulation.py generates the simulation data reported in Section 11 of the Constraint‑Based Physicalism (CBP) paper. Run with Python 3.8+ and dependencies: numpy, scipy, matplotlib.
