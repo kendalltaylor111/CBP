@@ -2,7 +2,7 @@ Constraint-Based Physicalism
 
 ------------------
 
-How to Read This Paper (CBP v12.pdf):
+How to Read This Paper (CBP_v13.pdf):
 
 This paper does not attempt to derive subjective experience from neural activity, solve the hard problem in the reductive sense, or identify a neural correlate of consciousness. It does something different: it asks what kind of physical fact consciousness would have to be if it is a physical fact at all, and finds that the answer dissolves the problem that motivated the question.
 
