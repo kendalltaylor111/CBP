@@ -16,4 +16,4 @@ The paper develops this argument with formal precision, including a resolution o
 
 ------------------
 
-*The Python script cbp_simulation_standalone.py generates the simulation data reported in Section 11 of the Constraint‑Based Physicalism (CBP) paper. Run with Python 3.8+ and dependencies: numpy, scipy, matplotlib.
+*The Python script cbp_simulation_standalone.py generates the simulation data reported in Section 11 of the Constraint‑Based Physicalism (CBP) paper. Run with Python 3.8+ and the required dependency numpy. If you wish to use plotting features (--plot or --grid), you also need matplotlib.
